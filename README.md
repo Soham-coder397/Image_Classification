@@ -15,10 +15,15 @@ This repository contains an end-to-end Deep Learning project for classifying ima
 - **Custom CSS:** Enhanced user interface with customized styling.
 
 ## 📸 Screenshots
+## Image_1
 <img width="970" height="748" alt="image" src="https://github.com/user-attachments/assets/635ce7f1-2d95-46b3-b6d3-e0cc3cc8b97c" />
+## Image_2
 <img width="958" height="923" alt="image" src="https://github.com/user-attachments/assets/7504e127-9d0a-4775-b0ed-b08f573edaf5" />
+## Image_3
 <img width="968" height="504" alt="image" src="https://github.com/user-attachments/assets/6165f71b-391f-4e2f-bf00-2c5302c9bf17" />
+## Image_4
 <img width="964" height="944" alt="image" src="https://github.com/user-attachments/assets/cc2c9cc0-8875-4113-80f4-13aa8f8d2146" />
+## Image_5
 <img width="967" height="928" alt="image" src="https://github.com/user-attachments/assets/529199ff-9c54-4d52-a725-1b353de43e5c" />
 
 ## 📊 Dataset
