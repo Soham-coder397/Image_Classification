@@ -1,88 +1,50 @@
-# 🍎 Fruit Image Classification Project
+# 🍎 Fruit & Vegetable Image Classifier
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![TensorFlow/Keras](https://img.shields.io/badge/Framework-TensorFlow%20%7C%20PyTorch-orange.svg)]()
+[![TensorFlow/Keras](https://img.shields.io/badge/Framework-TensorFlow%20%7C%20Keras-orange.svg)]()
+[![Streamlit](https://img.shields.io/badge/App-Streamlit-red.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## 📖 Project Overview
-This repository contains an end-to-end Deep Learning pipeline for classifying images of various fruits. Leveraging Convolutional Neural Networks (CNNs) and transfer learning techniques, the model accurately identifies different fruit categories from raw input images. It is designed to be easily accessible, highly accurate, and deployable for real-time inference.
+This repository contains an end-to-end Deep Learning project for classifying images of various fruits and vegetables. The model is built and trained using **TensorFlow/Keras** and is deployed as an interactive web application using **Streamlit**. Users can easily upload images and get real-time classification results.
 
 ## ✨ Features
-- **High Accuracy:** Utilizes state-of-the-art CNN architectures (e.g., ResNet, MobileNet, or Custom CNN) for robust feature extraction.
-- **Data Augmentation:** Implements advanced augmentation techniques (rotation, flipping, zooming) to prevent overfitting and improve model generalization.
-- **Easy Inference:** Simple scripts provided for testing the model on single images or batches.
-- **Evaluation Metrics:** Generates detailed reports including accuracy, precision, recall, F1-score, and Confusion Matrix visualizations.
+- **High Accuracy:** Trained using Deep Learning architectures for robust feature extraction.
+- **Interactive UI:** A clean and user-friendly web interface built with Streamlit.
+- **Real-Time Prediction:** Instantly classifies uploaded images of fruits and vegetables.
+- **Custom CSS:** Enhanced user interface with customized styling.
+
+## 📸 Screenshots
+<img width="970" height="748" alt="image" src="https://github.com/user-attachments/assets/635ce7f1-2d95-46b3-b6d3-e0cc3cc8b97c" />
+<img width="958" height="923" alt="image" src="https://github.com/user-attachments/assets/7504e127-9d0a-4775-b0ed-b08f573edaf5" />
+<img width="968" height="504" alt="image" src="https://github.com/user-attachments/assets/6165f71b-391f-4e2f-bf00-2c5302c9bf17" />
+<img width="964" height="944" alt="image" src="https://github.com/user-attachments/assets/cc2c9cc0-8875-4113-80f4-13aa8f8d2146" />
+<img width="967" height="928" alt="image" src="https://github.com/user-attachments/assets/529199ff-9c54-4d52-a725-1b353de43e5c" />
 
 ## 📊 Dataset
-The model is trained on a comprehensive Fruit Image Dataset (e.g., [Fruits 360](https://www.kaggle.com/moltean/fruits) or a custom dataset). 
-* **Number of Classes:** `[Insert Number of Classes, e.g., 10]`
-* **Total Images:** `[Insert Total Image Count]`
-* **Image Dimensions:** `[e.g., 224x224x3]`
+The model is trained on a custom, manually collected dataset of fruit and vegetable images. The data was gathered, curated, and categorized specifically for this project to ensure distinct feature representation.
 
-*(Note: If using a custom dataset, please place your data in the `dataset/` directory structured by class labels.)*
+* **Number of Classes:** `[Insert Number of Classes, e.g., 5]`
+* **Total Images:** `[Insert Total Image Count, e.g., 150]`
 
-## ⚙️ Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/soham-coder397/Image-Classification.git
-   cd Image-Classification
-   ```
-
-2. **Create a virtual environment (Optional but recommended):**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-
-3. **Install the dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## 🚀 Usage
-
-### 1. Training the Model
-To train the model from scratch, run the training script. You can configure hyperparameters like batch size, epochs, and learning rate inside the `config.py` file or via command-line arguments.
-```bash
-python train.py --epochs 25 --batch_size 32
-```
-
-### 2. Evaluating the Model
-To evaluate the trained model on the test dataset and generate metrics:
-```bash
-python evaluate.py --model_path models/best_model.h5
-```
-
-### 3. Running Inference (Prediction)
-To classify a new image, use the inference script:
-```bash
-python predict.py --image_path path/to/sample_apple.jpg
-```
-**Example Output:**
-> `Predicted Class: Apple | Confidence: 98.5%`
+*(Note: The manually collected data is placed in the `Fruits_Vegitables/` directory.)*
 
 ## 📂 Project Structure
 ```text
-fruit-image-classification/
+Image Classification/
 │
-├── dataset/                 # Training and testing datasets (organized by class)
-├── models/                  # Saved models (.h5, .pt, etc.)
-├── notebooks/               # Jupyter notebooks for EDA and experiments
-├── src/                     # Source code for the project
-│   ├── data_loader.py       # Data preprocessing and augmentation
-│   ├── model.py             # Neural network architecture
-│   ├── train.py             # Training loop
-│   └── evaluate.py          # Evaluation metrics and plots
-├── predict.py               # Script for making predictions
-├── requirements.txt         # Project dependencies
-└── README.md                # Project documentation
-```
+├── .ipynb_checkpoints/        # Jupyter Notebook checkpoints
+├── .vscode/                   # VS Code workspace settings
+├── Fruits_Vegitables/         # Custom manually collected dataset folder
+├── app.py                     # Main Streamlit web application script
+├── Image_Class_Model.ipynb    # Jupyter Notebook for EDA and Model Training
+├── Image_classify.keras       # Saved trained Deep Learning model
+├── requirements.txt           # Project dependencies (Streamlit, TensorFlow, etc.)
+└── README.md                  # Project documentation
 
 ## 📈 Results
 * **Training Accuracy:** `[e.g., 96%]`
 * **Validation Accuracy:** `[e.g., 94%]`
-* *(Optional)* Add visual representations of your loss/accuracy curves or a confusion matrix here to make the README more engaging.
 
 ## 🤝 Contributing
 Contributions are welcome! If you'd like to improve the model, add new fruit classes, or optimize the code, please fork the repository and create a pull request.
