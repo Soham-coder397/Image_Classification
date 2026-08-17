@@ -73,7 +73,7 @@ st.write("")
 # LOAD MODEL
 # ============================================================
 
-MODEL_PATH = r"D:\Python Projects\Machine Learning\Image Classification\Image_classify.keras"
+MODEL_PATH = r"D:\Machine Learning Projects\Image Classification\Image_classify.keras"
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
