@@ -63,4 +63,6 @@ Contributions are welcome! If you'd like to improve the model, add new fruit cla
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ✉️ Contact
-**Soham Ghosh** - https://www.linkedin.com/in/soham-ghosh-623367252/ - sohamghosh2925@gmail.com
+**Soham Ghosh** 
+- https://www.linkedin.com/in/soham-ghosh-623367252/
+- sohamghosh2925@gmail.com
