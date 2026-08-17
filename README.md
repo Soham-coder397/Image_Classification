@@ -33,8 +33,8 @@ This repository contains an end-to-end Deep Learning project for classifying ima
 ## 📊 Dataset
 The model is trained on a custom, manually collected dataset of fruit and vegetable images. The data was gathered, curated, and categorized specifically for this project to ensure distinct feature representation.
 
-* **Number of Classes:** `[Insert Number of Classes, e.g., 5]`
-* **Total Images:** `[Insert Total Image Count, e.g., 150]`
+* **Number of Classes:** `27`
+* **Total Images:** `108`
 
 *(Note: The manually collected data is placed in the `Fruits_Vegitables/` directory.)*
 
@@ -50,6 +50,7 @@ Image Classification/
 ├── Image_classify.keras       # Saved trained Deep Learning model
 ├── requirements.txt           # Project dependencies (Streamlit, TensorFlow, etc.)
 └── README.md                  # Project documentation
+```
 
 ## 📈 Results
 * **Training Accuracy:** `[e.g., 96%]`
