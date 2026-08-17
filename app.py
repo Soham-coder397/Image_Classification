@@ -3,61 +3,89 @@ import numpy as np
 import streamlit as st
 import time
 
-# ---------- Page Config ----------
+# ============================================================
+# PAGE CONFIG
+# ============================================================
+
 st.set_page_config(
     page_title="Fruit & Vegetable Classifier",
+    page_icon="🍎",
     layout="centered"
 )
 
-# ---------- Custom CSS ----------
+
+# ============================================================
+# CUSTOM CSS
+# ============================================================
+
 st.markdown("""
 <style>
 
-.main{
-    background-color:#f5f7fa;
+.main {
+    background-color: #f5f7fa;
 }
 
-.title{
-    text-align:center;
-    color:white;
-    padding:18px;
-    border-radius:15px;
-    background:linear-gradient(90deg,#ff512f,#dd2476);
-    font-size:35px;
-    font-weight:bold;
+.title {
+    text-align: center;
+    color: white;
+    padding: 18px;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    font-size: 35px;
+    font-weight: bold;
 }
 
-.subtitle{
-    text-align:center;
-    color:gray;
-    font-size:18px;
+.subtitle {
+    text-align: center;
+    color: gray;
+    font-size: 18px;
 }
 
-.result-box{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+.result-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- Title ----------
-st.markdown("<div class='title'>Fruit & Vegetable Classifier</div>", unsafe_allow_html=True)
 
-st.markdown("<p class='subtitle'>Upload an image and let AI identify the fruit or vegetable.</p>", unsafe_allow_html=True)
+# ============================================================
+# TITLE
+# ============================================================
+
+st.markdown(
+    "<div class='title'>🍎 Fruit & Vegetable Classifier 🥕</div>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p class='subtitle'>Upload an image and let AI identify the fruit or vegetable.</p>",
+    unsafe_allow_html=True
+)
 
 st.write("")
 
-# ---------- Load Model ----------
-model = tf.keras.models.load_model(r'D:\Python Projects\Machine Learning\Image Classification\Image_classify.keras')
+
+# ============================================================
+# LOAD MODEL
+# ============================================================
+
+MODEL_PATH = r"D:\Python Projects\Machine Learning\Image Classification\Image_classify.keras"
+
+model = tf.keras.models.load_model(MODEL_PATH)
 
 img_height = 180
 img_width = 180
 
-# ---------- Dataset ----------
-data_train_path = r'Fruits_Vegitables\train'
+
+# ============================================================
+# LOAD DATASET
+# ============================================================
+
+data_train_path = r"Fruits_Vegitables\train"
 
 data_train = tf.keras.utils.image_dataset_from_directory(
     data_train_path,
@@ -68,15 +96,65 @@ data_train = tf.keras.utils.image_dataset_from_directory(
 
 data_cat = data_train.class_names
 
-# ---------- Upload Image ----------
-image = st.file_uploader("Upload an Image",type=["jpg", "jpeg", "png"])
+
+# ============================================================
+# FRUIT LIST
+# ============================================================
+
+fruits = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Grapes",
+    "Kiwi",
+    "Mango",
+    "Orange",
+    "Papaya",
+    "Pineapple",
+    "Pomegranate",
+    "Strawberry",
+    "Watermelon",
+    "Coconut"
+]
+
+
+# ============================================================
+# IMAGE UPLOADER
+# ============================================================
+
+image = st.file_uploader(
+    "📤 Upload an Image",
+    type=["jpg", "jpeg", "png"]
+)
+
+
+# ============================================================
+# PREDICTION
+# ============================================================
 
 if image is not None:
 
+    # --------------------------------------------------------
+    # Two Columns
+    # --------------------------------------------------------
+
     col1, col2 = st.columns([1, 1])
 
+    # --------------------------------------------------------
+    # Display Uploaded Image
+    # --------------------------------------------------------
+
     with col1:
-        st.image(image, caption="Uploaded Image", use_container_width=True)
+
+        st.image(
+            image,
+            caption="Uploaded Image",
+            use_container_width=True
+        )
+
+    # --------------------------------------------------------
+    # Load Image
+    # --------------------------------------------------------
 
     image_load = tf.keras.utils.load_img(
         image,
@@ -84,31 +162,130 @@ if image is not None:
     )
 
     img_arr = tf.keras.utils.img_to_array(image_load)
+
     img_bat = tf.expand_dims(img_arr, 0)
 
-    predict = model.predict(img_bat, verbose=0)
+    # --------------------------------------------------------
+    # AI Prediction
+    # --------------------------------------------------------
 
-    score = tf.nn.softmax(predict)
-
-    prediction = data_cat[np.argmax(score)]
-    confidence = float(np.max(score)) * 100
-
-    with st.spinner("AI is analyzing the image..."):
+    with st.spinner("🤖 AI is analyzing the image..."):
 
         time.sleep(2)
 
-        predict = model.predict(img_bat, verbose=0)
+        predict = model.predict(
+            img_bat,
+            verbose=0
+        )
 
         score = tf.nn.softmax(predict)
 
+    # --------------------------------------------------------
+    # Get Prediction
+    # --------------------------------------------------------
+
+    prediction_index = np.argmax(score)
+
+    prediction = data_cat[prediction_index]
+
+    confidence = float(np.max(score)) * 100
+
+    # --------------------------------------------------------
+    # Determine Fruit / Vegetable
+    # --------------------------------------------------------
+
+    if prediction in fruits:
+
+        category = "🍎 Fruit"
+
+    else:
+
+        category = "🥕 Vegetable"
+
+    # --------------------------------------------------------
+    # Display Result
+    # --------------------------------------------------------
+
     with col2:
 
-        st.markdown("## Prediction")
+        st.markdown("## 🔍 Prediction")
 
-        st.success(f"**{prediction}**")
+        st.success(
+            f"### {prediction}"
+        )
 
-        st.metric(label="Confidence",value=f"{confidence:.2f}%")
+        st.info(
+            f"### Category: {category}"
+        )
 
-        st.progress(confidence / 100)
+        st.metric(
+            label="🎯 Confidence",
+            value=f"{confidence:.2f}%"
+        )
 
-        st.info("Prediction generated successfully")
+        st.progress(
+            confidence / 100
+        )
+
+        if confidence >= 80:
+
+            st.success(
+                "✅ High confidence prediction"
+            )
+
+        elif confidence >= 50:
+
+            st.warning(
+                "⚠️ Moderate confidence prediction"
+            )
+
+        else:
+
+            st.error(
+                "❌ Low confidence prediction"
+            )
+
+    # --------------------------------------------------------
+    # Detailed Result
+    # --------------------------------------------------------
+
+    st.write("")
+
+    st.markdown("---")
+
+    st.markdown("### 📊 Result Summary")
+
+    result_col1, result_col2, result_col3 = st.columns(3)
+
+    with result_col1:
+
+        st.write("**Detected Object**")
+
+        st.write(f"🍽️ {prediction}")
+
+    with result_col2:
+
+        st.write("**Category**")
+
+        st.write(category)
+
+    with result_col3:
+
+        st.write("**Confidence**")
+
+        st.write(f"{confidence:.2f}%")
+
+    st.write("")
+
+    st.success("🎉 Prediction generated successfully!")
+
+
+# ============================================================
+# INITIAL MESSAGE
+# ============================================================
+
+else:
+
+    st.info(
+        "👆 Please upload a fruit or vegetable image to start prediction."
+    )
